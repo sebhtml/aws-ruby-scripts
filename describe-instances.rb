@@ -14,10 +14,16 @@ puts("Instances")
 
 ec2.instances.each do |i|
 	puts(i.id+"	"+i.instance_type+"	"+i.status.to_s+"	"+i.availability_zone)
+	i.tags.each do |key,value|
+		puts("	"+key+"="+value)
+	end
 end
 
 puts("Volumes")
 
 ec2.volumes.each do |i|
 	puts(i.id+"	"+i.status.to_s+"	"+i.size.to_s+"	"+i.availability_zone_name)
+	i.tags.each do |key,value|
+		puts("	"+key+"="+value)
+	end
 end
