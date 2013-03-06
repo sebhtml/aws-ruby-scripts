@@ -9,6 +9,8 @@ lineNumber=0
 
 projects=Hash.new
 
+bigSum=0.0
+
 CSV.foreach(fileName) do |tokens|
 
 	lineNumber+=1
@@ -43,12 +45,18 @@ CSV.foreach(fileName) do |tokens|
 
 	projects[project].push([productCode,usageType,usageQuantity,totalCost])
 
+	bigSum+=totalCost
+
 end
 
 puts "<html><head><title>Cost Allocation Report</title></head><body><table border='1'>"
 puts "<caption>Pivot table for Cost Allocation Report on AWS
 <br />
-File from AWS S3: "+fileName+"</caption><tbody>"
+File from AWS S3: "+fileName+"<br />"
+
+puts "Total for the month: "+bigSum.to_s
+puts "</caption>"
+puts "<tbody>"
 
 projects.each do |project, data|
 
